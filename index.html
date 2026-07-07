@@ -247,7 +247,12 @@
     font-family: var(--mono);
     font-size: 12px;
   }
-
+  .project-detail {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-top: 14px;
+    line-height: 1.7;
+  } 
   .project-link {
     display: inline-flex;
     align-items: center;
@@ -465,10 +470,16 @@
           <span class="stack-tag">Git</span>
         </div>
         <ul class="project-bullets">
-          <li>Implemented the event router and structured logging module within a modular event-driven system for aggregating sensor and application data across components.</li>
-          <li>Wrote 40 unit tests covering core infrastructure, catching 7 integration bugs before merge.</li>
-          <li>Coordinated with 4 teammates via Git-based workflows on a shared, modular codebase.</li>
+          <li>Designed and built the sensor layer: an ISensor interface, an AbstractSensor base class, and four concrete implementations covering temperature, blood oxygen, heart rate, and EEG sensors</li>
+          <li>Refactored the EventBus to use the observer pattern and added exception handling to prevent error-causing crashes during event dispatch</li>
+          <li>Implemented the Logger and wrote integration tests covering the SensorManager-to-EventBus and EventBus-to-Logger connections, plus additional unit tests for MessageEnvelope and EventBus behaviour</li>
         </ul>
+        <p class="project-detail">
+          Carebed was a 4-person group project to build a modular event-driven system in C#/.NET that aggregates data from medical sensors into a unified pipeline. I built the sensor layer from scratch: the ISensor interface, 
+          an abstract base class, and four concrete sensor implementations (temperature, blood oxygen, heart rate, and EEG). I also built the SensorManager, refactored the EventBus to use the observer pattern and handle exceptions 
+          properly, implemented the Logger, and wrote integration tests covering the SensorManager-to-EventBus and EventBus-to-Logger connections. The main design decision I made was pulling out an abstract base class for sensors 
+          rather than implementing ISensor directly on each one, which made adding new sensor types a lot cleaner. If I did it again I would write the tests alongside the implementation rather than in a separate pass at the end.
+        </p>
         <a href="https://github.com/TrentPf/Carebed" target="_blank" rel="noopener" class="project-link">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
           View on GitHub
@@ -488,9 +499,17 @@
           <span class="stack-tag">REST API</span>
         </div>
         <ul class="project-bullets">
-          <li>Built the REST API layer (Node.js/Supabase) for a mobile app that captures GPS trip data and computes driving performance metrics.</li>
-          <li>Implemented asynchronous data handling for trip uploads and debugged 5 defects found during QA passes with the mobile front end.</li>
+          <li>Built the scoring engine: GPS distance calculation, total trip distance, average speed in km/h, and individual braking, acceleration, and speed scores that roll into an overall trip score</li>
+          <li>Implemented the backend for storing, retrieving, and clearing pending trips, and defined scoring thresholds used to weight the final metrics</li>
+          <li>Built the Home and History controllers and views, the app stylesheet, and scaffolding for remaining controller/view pairs</li>
         </ul>
+        <p class="project-detail">
+          DriveTracker was a 4-person group project to build a mobile app that records GPS trip data and scores driving behaviour. I built the scoring engine: functions to calculate 
+          distance between GPS coordinates, total distance travelled, average speed in km/h, and individual scores for braking, acceleration, and speed, which roll up into an overall trip score. 
+          I also built the backend for storing and retrieving pending trips, and built the Home and History controllers and views. The main thing I had to work through was figuring out the right 
+          thresholds and weighting for the scoring metrics so the scores felt meaningful rather than arbitrary. If I went back to it I would add unit tests for the scoring functions since they 
+          were the most logic-heavy part of the codebase and the easiest place for a calculation bug to go unnoticed.
+        </p>
         <a href="https://github.com/TrentPf/DriveTracker" target="_blank" rel="noopener" class="project-link">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
           View on GitHub
@@ -509,9 +528,17 @@
           <span class="stack-tag">Data Visualization</span>
         </div>
         <ul class="project-bullets">
-          <li>Cleaned and validated World Bank datasets across 218 countries, building a repeatable preprocessing pipeline in R.</li>
-          <li>Produced visualizations identifying a statistically significant, positive correlation between GDP per capita and life expectancy.</li>
+          <li>Wrote all R code for the project across four scripts: data cleaning and preprocessing, statistical analysis, and visualization</li>
+          <li>Produced both log-scaled and non-log-scaled scatter plots with r² labels to show the GDP/life expectancy relationship at different levels of transformation</li>
+          <li>Added error prevention for directory saves, an optional minimalistic theme, and authored the full README including dataset sources, system architecture, and annotated screenshots</li>
         </ul>
+        <p class="project-detail">
+          This was a 5-person data analysis project looking at the relationship between GDP per capita and life expectancy across multiple countries using World Bank data. 
+          I wrote all of the R code: the data cleaning and preprocessing scripts, the statistical analysis, and the visualizations including scatter plots with r² labels comparing log-transformed 
+          and raw GDP against life expectancy. The other members handled the written report. The main decision I made on the technical side was producing both log-scaled and non-log-scaled versions of 
+          the graphs because the log transformation made the trend line much cleaner but obscured how the data actually distributed at lower GDP values, and we needed both to tell the full story. 
+          The key finding was the existence of a strong, statistically significant, positive correlation between log GDP per capita and life expectancy, with r² of X.
+        </p>
         <a href="https://github.com/TrentPf/DataAnalysisGDPvsLE" target="_blank" rel="noopener" class="project-link">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
           View on GitHub
@@ -529,9 +556,17 @@
           <span class="stack-tag">Git</span>
         </div>
         <ul class="project-bullets">
-          <li>Built database-backed workflows for tournament registration and dynamic bracket generation in a full-stack web application.</li>
-          <li>Coordinated with 3 teammates via iterative Git-based sprints.</li>
+          <li>Set up the initial Rails project structure and resolved conflicting gem, Ruby, and Rails versions to get the app running across the team</li>
+          <li>Designed the database schema and seeds, built tournament search, the tournament creation form, join logic, and the full matches feature including scaffolding, business logic, and match result updates</li>
+          <li>Debugged and fixed seed ordering and tournament rendering issues that caused display errors when data relationships were loaded out of sequence</li>
         </ul>
+        <p class="project-detail">
+          Matchmaker was a 3-person group project to build a tournament management web app in Ruby on Rails, built during the Lighthouse Labs bootcamp in January 2022. 
+          I did most of the backend work: setting up the initial project structure and resolving gem and Rails version conflicts to get the app running, designing the 
+          database schema and seeds, building tournament search, the tournament creation form and join logic, and the full matches feature including scaffolding, business logic, and match result updates. 
+          The trickiest part was getting the seeds and tournament rendering working together correctly since the data relationships needed to be set up in the right order. If I were to redo it now I would 
+          plan the schema more carefully upfront before writing any logic, since we had to go back and fix the seeds a few times as the data model evolved.
+        </p>
         <a href="https://github.com/TrentPf/Matchmaker" target="_blank" rel="noopener" class="project-link">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
           View on GitHub
