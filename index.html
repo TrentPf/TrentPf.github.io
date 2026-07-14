@@ -209,7 +209,52 @@
     letter-spacing: 0.06em;
   }
 
-  .project-stack {
+  .project-image {
+   width: 100%;
+   margin-top: 16px;
+   border-radius: 4px;
+   border: 1px solid var(--border);
+   display: block;
+   cursor: pointer;
+   transition: border-color 0.15s;
+ }
+ 
+ .project-image:hover {
+   border-color: var(--teal);
+ }
+ 
+ .image-caption {
+   font-family: var(--mono);
+   font-size: 11px;
+   color: var(--text-dim);
+   margin-top: 6px;
+   letter-spacing: 0.04em;
+ }
+ 
+ .lightbox {
+   display: none;
+   position: fixed;
+   inset: 0;
+   background: rgba(0, 0, 0, 0.85);
+   z-index: 1000;
+   align-items: center;
+   justify-content: center;
+   padding: 32px;
+   cursor: pointer;
+ }
+ 
+ .lightbox.open {
+   display: flex;
+ }
+ 
+ .lightbox img {
+   max-width: 100%;
+   max-height: 90vh;
+   border-radius: 4px;
+   border: 1px solid var(--border);
+ }
+
+ .project-stack {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
@@ -474,6 +519,13 @@
           <li>Refactored the EventBus to use the observer pattern and added exception handling to prevent error-causing crashes during event dispatch</li>
           <li>Implemented the Logger and wrote integration tests covering the SensorManager-to-EventBus and EventBus-to-Logger connections, plus additional unit tests for MessageEnvelope and EventBus behaviour</li>
         </ul>
+        <img
+          src="images/carebed.png"
+          alt="Carebed project screenshot"
+          class="project-image"
+          onclick="openLightbox(this.src)"
+        >
+        <p class="image-caption">Carebed — event-driven sensor aggregation system, C#/.NET</p>
         <p class="project-detail">
           Carebed was a 4-person group project to build a modular, event-driven system in C#/.NET that aggregates data from medical sensors into a unified pipeline. I built the sensor layer from scratch: the ISensor interface, 
           an abstract base class, and four concrete sensor implementations (temperature, blood oxygen, heart rate, and EEG). I also built the SensorManager, refactored the EventBus to use the observer pattern and handle exceptions 
@@ -503,6 +555,13 @@
           <li>Implemented the backend for storing, retrieving, and clearing pending trips, and defined scoring thresholds used to weight the final metrics</li>
           <li>Built the Home and History controllers and views, the app stylesheet, and scaffolding for remaining controller/view pairs</li>
         </ul>
+        <img
+          src="images/drivetracker.png"
+          alt="DriveTracker project screenshot"
+          class="project-image"
+          onclick="openLightbox(this.src)"
+        >
+        <p class="image-caption">DriveTracker — GPS trip scoring app, React Native / Node.js</p>
         <p class="project-detail">
           DriveTracker was a 4-person group project to build a mobile app that records GPS trip data and scores driving behaviour. I built the scoring engine: functions to calculate 
           distance between GPS coordinates, total distance travelled, average speed in km/h, and individual scores for braking, acceleration, and speed, which roll up into an overall trip score. 
@@ -532,6 +591,14 @@
           <li>Produced both log-scaled and non-log-scaled scatter plots with r² labels to show the GDP/life expectancy relationship at different levels of transformation</li>
           <li>Added error prevention for directory saves, an optional minimalistic theme, and authored the full README including dataset sources, system architecture, and annotated screenshots</li>
         </ul>
+        <img
+          src="images/gdp.png"
+          alt="GDP vs Life Expectancy analysis screenshot"
+          class="project-image"
+          onclick="openLightbox(this.src)"
+        >
+<p class="image-caption">GDP vs. Life Expectancy — data analysis and visualization in R</p>
+<p class="image-caption">DriveTracker — GPS trip scoring app, React Native / Node.js</p>
         <p class="project-detail">
           This was a 5-person data analysis project looking at the relationship between GDP per capita and life expectancy across multiple countries using World Bank data. 
           I wrote all of the R code: the data cleaning and preprocessing scripts, the statistical analysis, and the visualizations including scatter plots with r² labels comparing log-transformed 
@@ -560,6 +627,13 @@
           <li>Designed the database schema and seeds, built tournament search, the tournament creation form, join logic, and the full matches feature including scaffolding, business logic, and match result updates</li>
           <li>Debugged and fixed seed ordering and tournament rendering issues that caused display errors when data relationships were loaded out of sequence</li>
         </ul>
+        <img
+          src="images/matchmaker.png"
+          alt="Matchmaker project screenshot"
+          class="project-image"
+          onclick="openLightbox(this.src)"
+        >
+<p class="image-caption">Matchmaker — tournament management web app, Ruby on Rails</p>
         <p class="project-detail">
           Matchmaker was a 3-person group project to build a tournament management web app in Ruby on Rails, built during the Lighthouse Labs bootcamp in January 2022. 
           I did most of the backend work: setting up the initial project structure and resolving gem and Rails version conflicts to get the app running, designing the 
